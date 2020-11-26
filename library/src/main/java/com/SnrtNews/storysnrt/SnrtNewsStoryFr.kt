@@ -17,6 +17,7 @@ import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
@@ -55,12 +56,12 @@ class SnrtNewsStoryFr(
         return when (this) {
             is StoryItem.RemoteImage -> ImageView(context)
             is StoryItem.Video -> LayoutInflater.from(
-                context
+                    context
             ).inflate(R.layout.video_player, null)
 
             is StoryItem.CustomView -> customView
             is StoryItem.CustomLayout -> LayoutInflater.from(
-                context
+                    context
             ).inflate(layout, null)
         }
     }
@@ -70,15 +71,15 @@ class SnrtNewsStoryFr(
         storyUser.get(index).forEachIndexed {
             indexk, sliderView ->
             val myProgressBar = MyProgressBar(
-                context,
-                indexk,
-                sliderView.durationInSeconds,
-                object : ProgressTimeWatcher {
-                    override fun onEnd(indexFinished: Int) {
-                        next()
-                    }
-                },
-                mProgressDrawable
+                    context,
+                    indexk,
+                    sliderView.durationInSeconds,
+                    object : ProgressTimeWatcher {
+                        override fun onEnd(indexFinished: Int) {
+                            next()
+                        }
+                    },
+                    mProgressDrawable
             )
             libSliderViewList.add(myProgressBar)
 
@@ -106,12 +107,12 @@ class SnrtNewsStoryFr(
 
     private fun initView() {
         view = View.inflate(
-            context,
-            R.layout.progress_story_view, this
+                context,
+                R.layout.progress_story_view, this
         )
         val params = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
         )
 
         gestureDetector = GestureDetector(context, SingleTapConfirm())
@@ -156,7 +157,7 @@ class SnrtNewsStoryFr(
         view.view1.close.setOnTouchListener(touchListener)
 
         this.layoutParams = params
-         passedInContainerView.addView(this)
+        passedInContainerView.addView(this)
     }
 
     private fun show() {
@@ -192,8 +193,8 @@ class SnrtNewsStoryFr(
             is StoryItem.Video -> {
                 pause(false)
                 playVideo(
-                    currentlyShownIndex,
-                    (currentView as StoryItem.Video)
+                        currentlyShownIndex,
+                        (currentView as StoryItem.Video)
                 )
             }
         }
@@ -202,8 +203,8 @@ class SnrtNewsStoryFr(
         view.currentlyDisplayedView.removeAllViews()
         view.currentlyDisplayedView.addView(currentView.view)
         val params = LinearLayout.LayoutParams(
-            LayoutParams.MATCH_PARENT,
-            LayoutParams.MATCH_PARENT, 1f
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT, 1f
         )
 
         if (currentView.view is ImageView) {
@@ -215,17 +216,17 @@ class SnrtNewsStoryFr(
     @RequiresApi(Build.VERSION_CODES.O)
     private fun loadRemoteImage(remoteImage: StoryItem.RemoteImage) {
         Picasso.get()
-            .load(remoteImage.imageUrl)
-            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-            .into(remoteImage.view as ImageView, object : Callback {
-                override fun onSuccess() {
-                    resume()
-                }
+                .load(remoteImage.imageUrl)
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .into(remoteImage.view as ImageView, object : Callback {
+                    override fun onSuccess() {
+                        resume()
+                    }
 
-                override fun onError(e: Exception?) {
-                    e?.printStackTrace()
-                }
-            })
+                    override fun onError(e: Exception?) {
+                        e?.printStackTrace()
+                    }
+                })
         Picasso.get()
                 .load(remoteImage.AvatarJournal)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
@@ -239,9 +240,10 @@ class SnrtNewsStoryFr(
                     }
                 })
 
-        val typeface = resources.getFont(R.font.exbold)
-        val typeface2 = resources.getFont(R.font.bold)
-        val typeface3 = resources.getFont(R.font.arbold)
+
+        val typeface = ResourcesCompat.getFont(context,R.font.exbold)
+        val typeface2 =  ResourcesCompat.getFont(context,R.font.bold)
+        val typeface3 =  ResourcesCompat.getFont(context,R.font.arbold)
 
         view.namejour.text = remoteImage.NameJournal
         val longapi : String = remoteImage.LongApi
@@ -297,8 +299,8 @@ class SnrtNewsStoryFr(
     }
 
     private fun playVideo(
-        index: Int,
-        videoStoryItem: StoryItem.Video
+            index: Int,
+            videoStoryItem: StoryItem.Video
     ) {
         exoPlayer?.stop()
         exoPlayer?.release()

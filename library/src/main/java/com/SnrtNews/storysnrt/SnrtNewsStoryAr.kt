@@ -17,6 +17,7 @@ import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
@@ -238,9 +239,9 @@ class SnrtNewsStoryAr(
                     }
                 })
 
-        val typeface = resources.getFont(R.font.exbold)
-        val typeface2 = resources.getFont(R.font.bold)
-        val typeface3 = resources.getFont(R.font.arbold)
+        val typeface = ResourcesCompat.getFont(context,R.font.exbold)
+        val typeface2 = ResourcesCompat.getFont(context,R.font.bold)
+        val typeface3 = ResourcesCompat.getFont(context,R.font.arbold)
 
         view.namejour.text = remoteImage.NameJournal
         val longapi : String = remoteImage.LongApi

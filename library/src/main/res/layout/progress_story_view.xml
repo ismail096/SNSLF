@@ -161,7 +161,7 @@
 
         <TextView
             android:id="@+id/TitleStory"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="40dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:textSize="20sp"

@@ -147,22 +147,23 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
+        >
 
         <ImageView
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/overlaystory"
             />
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
+        >
 
         <TextView
             android:id="@+id/TitleStory"
@@ -176,8 +177,9 @@
             android:text="test title"
             android:textDirection="anyRtl"
             android:textStyle="bold"
+            android:layout_alignParentBottom="true"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

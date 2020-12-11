@@ -181,28 +181,22 @@
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-       >
 
         <ImageView
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/overlaystory"
-            android:layout_alignParentBottom="true"
+
             />
 
-    </RelativeLayout>
 
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-      >
+
+
 
         <TextView
             android:id="@+id/TitleStory"
@@ -216,9 +210,8 @@
             android:text="test title"
             android:textDirection="anyRtl"
             android:textStyle="bold"
-            android:layout_alignParentBottom="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
